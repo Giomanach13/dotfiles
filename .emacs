@@ -37,12 +37,23 @@
 
 (use-package org
   :ensure t
-  :bind (("\C-ca" . org-agenda))
+  :bind (("\C-ca" . org-agenda)
+	 ("\C-cc" . org-capture))
+  :init
   :config
   (setq org-todo-keywords
 	'((sequence "TODO" "IN-PROGRESS" "WAITING" "|" "DONE" "CANCELLED"))
 	)
   (setq org-agenda-files '("~/Dropbox/org/"))
+  (setq org-capture-templates
+	'(("a" "My TODO task format." entry
+	   (file "~/Dropbox/org/tasks.org")
+	   "* TODO %?
+SCHEDULED: %t"))
+	)
+  (setq org-log-done (quote time))
+  (setq org-log-redeadline (quote time))
+  (setq org-log-reschedule (quote time))
   )
 
 ;; Fullscreen on startup
